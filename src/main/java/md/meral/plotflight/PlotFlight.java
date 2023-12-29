@@ -2,6 +2,7 @@ package md.meral.plotflight;
 
 import md.meral.plotflight.controllers.CommandController;
 import md.meral.plotflight.controllers.FlightController;
+import md.meral.plotflight.controllers.TitleController;
 import md.meral.plotflight.listeners.P2Listener;
 import md.meral.plotflight.utils.MessageManager;
 import org.bukkit.Bukkit;
@@ -9,14 +10,10 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Objects;
 
 public final class PlotFlight extends JavaPlugin {
     public static PlotFlight instance;
@@ -32,6 +29,7 @@ public final class PlotFlight extends JavaPlugin {
             P2Listener p2Listener = new P2Listener();
             FlightController flightController = new FlightController();
             CommandController commandController = new CommandController();
+            TitleController titleController = new TitleController();
         } else {
             MessageManager.ConsoleLogError("PlotSquared plugin missing, PlotFlight cannot start!");
         }
