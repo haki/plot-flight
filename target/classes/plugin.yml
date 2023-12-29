@@ -1,0 +1,14 @@
+name: PlotFlight
+version: '1.0-SNAPSHOT'
+main: md.meral.plotflight.PlotFlight
+api-version: 1.18
+description: A plugin that allows you to fly on plots where you have authorization.
+authors: [JREnginar, Nekolya]
+website: https://minecraft.meral.md
+commands:
+  plotfly:
+    description: Controls the plotfly feature
+    usage: /<command> [enable|disable|reload]
+    aliases: [pf]
+    permission: plotfly.command
+    permission-message: You do not have permission to use this command.

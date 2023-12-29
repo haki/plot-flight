@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="PlotFlight:jar">
+    <output-path>$USER_HOME$/Desktop/MCLocalServer/plugins</output-path>
+    <root id="archive" name="PlotFlight.jar">
+      <element id="module-output" name="PlotFlight" />
+    </root>
+  </artifact>
+</component>
