@@ -16,7 +16,7 @@ public class CommandController {
     public void VerifyCommand(CommandSender sender, String label, String[] args) {
         Player player = PlotFlight.instance.getServer().getPlayer(sender.getName());
         FileConfiguration pluginConfig = PlotFlight.instance.getConfig();
-        if (player.hasPermission(pluginConfig.getString("Permissions.CommandPerm")) && !player.hasPermission(pluginConfig.getString("Permissions.BypassPerm"))) {
+        if (CheckOpStatus(player) || (player.hasPermission(pluginConfig.getString("Permissions.CommandPerm")) && !player.hasPermission(pluginConfig.getString("Permissions.BypassPerm")))) {
             if (label.equalsIgnoreCase("plotfly")) {
                 if (args.length == 1) {
                     switch (args[0]) {
@@ -41,7 +41,7 @@ public class CommandController {
     }
 
     public void CommandReload(FileConfiguration pluginConfig, Player player) {
-        if (player.hasPermission(pluginConfig.getString("Permissions.ReloadPerm"))) {
+        if (CheckOpStatus(player) || player.hasPermission(pluginConfig.getString("Permissions.ReloadPerm"))) {
             MessageManager.PlayerMessageSpecialColor(pluginConfig.getString("Reloaded"), player);
             PlotFlight.instance.reloadConfig();
             PlotFlight.instance.saveDefaultConfig();
@@ -58,5 +58,9 @@ public class CommandController {
     public void CommandDisable(FileConfiguration pluginConfig, Player player) {
         FlightController.instance.AddPlayerToCantFlyList(player.getUniqueId());
         MessageManager.PlayerMessageSpecialColor(pluginConfig.getString("Settings.CommandInactive"), player);
+    }
+
+    public boolean CheckOpStatus(Player player) {
+        return player.isOp();
     }
 }

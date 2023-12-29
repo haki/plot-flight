@@ -6,6 +6,7 @@ import com.plotsquared.core.events.PlayerEnterPlotEvent;
 import com.plotsquared.core.events.PlayerLeavePlotEvent;
 import com.plotsquared.core.plot.Plot;
 import md.meral.plotflight.PlotFlight;
+import md.meral.plotflight.controllers.CommandController;
 import md.meral.plotflight.controllers.FlightController;
 import org.bukkit.entity.Player;
 
@@ -34,7 +35,7 @@ public class P2Listener {
         boolean flyPerm = player.hasPermission(PlotFlight.instance.getConfig().getString("Permissions.FlyPerm"));
         boolean bypassPerm = player.hasPermission(PlotFlight.instance.getConfig().getString("Permissions.BypassPerm"));
 
-        if (player == null || !flyPerm || bypassPerm) {
+        if (player == null || (!CommandController.instance.CheckOpStatus(player) && (!flyPerm || bypassPerm))) {
             FlightController.instance.DontAllowToFlyPlayer(player, false);
             return;
         }
