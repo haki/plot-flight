@@ -16,7 +16,7 @@ public class CommandController {
     public void VerifyCommand(CommandSender sender, String label, String[] args) {
         Player player = PlotFlight.instance.getServer().getPlayer(sender.getName());
         FileConfiguration pluginConfig = PlotFlight.instance.getConfig();
-        if (CheckOpStatus(player) || (player.hasPermission(pluginConfig.getString("Permissions.CommandPerm")) && !player.hasPermission(pluginConfig.getString("Permissions.BypassPerm")))) {
+        if (CheckOpStatus(player) || player.hasPermission(pluginConfig.getString("Permissions.CommandPerm"))) {
             if (label.equalsIgnoreCase("plotfly")) {
                 if (args.length == 1) {
                     switch (args[0]) {

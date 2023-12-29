@@ -35,15 +35,21 @@ public class P2Listener {
         boolean flyPerm = player.hasPermission(PlotFlight.instance.getConfig().getString("Permissions.FlyPerm"));
         boolean bypassPerm = player.hasPermission(PlotFlight.instance.getConfig().getString("Permissions.BypassPerm"));
 
-        if (player == null || (!CommandController.instance.CheckOpStatus(player) && (!flyPerm || bypassPerm))) {
+        if (!bypassPerm && player.getAllowFlight()) {
+            FlightController.instance.DontAllowToFlyPlayer(player, false);
+        }
+
+        if (player == null || (!CommandController.instance.CheckOpStatus(player) && !flyPerm)) {
             FlightController.instance.DontAllowToFlyPlayer(player, false);
             return;
         }
 
-        if (plot.getMembers().contains(playerUUID) || plot.getOwners().contains(playerUUID) || plot.getTrusted().contains(playerUUID)) {
+        if (bypassPerm || plot.getMembers().contains(playerUUID) || plot.getOwners().contains(playerUUID) || plot.getTrusted().contains(playerUUID)) {
             if (!FlightController.instance.CanFly(playerUUID) && !FlightController.instance.CantFly(playerUUID)) {
                 FlightController.instance.AllowToFlyPlayer(player);
             }
+        } else {
+            FlightController.instance.DontAllowToFlyPlayer(player, false);
         }
     }
 
@@ -53,7 +59,9 @@ public class P2Listener {
         Plot plot = event.getPlot();
         Player player = PlotFlight.instance.getServer().getPlayer(playerUUID);
 
-        if (player == null) {
+        boolean bypassPerm = player.hasPermission(PlotFlight.instance.getConfig().getString("Permissions.BypassPerm"));
+
+        if (player == null || bypassPerm) {
             return;
         }
 

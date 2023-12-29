@@ -64,6 +64,7 @@ public class FlightController {
         MessageManager.PlayerMessageSpecialColor(message, player);
 
         player.setAllowFlight(true);
+        player.setFlying(true);
 
         if (PlotFlight.instance.getConfig().getBoolean("Title.TitleMessage")) {
             TitleController.instance.SendTitleToPlayer(player, PlotFlight.instance.getConfig().getString("Title.EnabledMessage"), "");
@@ -91,6 +92,7 @@ public class FlightController {
         }
 
         player.setAllowFlight(false);
+        player.setFlying(false);
 
         String soundString = PlotFlight.instance.getConfig().getString("Settings.DisabledSoundEffect");
         try {

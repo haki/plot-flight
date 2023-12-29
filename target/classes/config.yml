@@ -25,6 +25,7 @@ Settings:
   DisabledSoundEffect: "ENTITY_ENDER_DRAGON_FLAP" # Sound effect when the player exits the plot
   CommandActive: "&8[&aPlotFly&8] &7Now your flight mode will be active or inactive when you enter the plot." # /plotfly enable message
   CommandInactive: "&8[&aPlotFly&8] &7Your flight mode will no longer be active or inactive when you enter the plot." # /plotfly disable message
+  PermissionCheckInterval: 6000 # 1 Minute = 60 * 20 = 1200 1 tick = 1/20th of a second, so 6000 ticks = 5 minutes
 
 Title:
   TitleMessage: false # Is the title message on or off?

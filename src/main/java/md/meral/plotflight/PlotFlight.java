@@ -5,6 +5,7 @@ import md.meral.plotflight.controllers.FlightController;
 import md.meral.plotflight.controllers.TitleController;
 import md.meral.plotflight.listeners.P2Listener;
 import md.meral.plotflight.utils.MessageManager;
+import md.meral.plotflight.utils.PermissionCheckTask;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -30,6 +31,8 @@ public final class PlotFlight extends JavaPlugin {
             FlightController flightController = new FlightController();
             CommandController commandController = new CommandController();
             TitleController titleController = new TitleController();
+
+            new PermissionCheckTask(this).runTaskTimer(this, 0, getConfig().getInt("Settings.PermissionCheckInterval"));
         } else {
             MessageManager.ConsoleLogError("PlotSquared plugin missing, PlotFlight cannot start!");
         }
